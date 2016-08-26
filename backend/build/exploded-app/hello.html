@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello, JavaScript !</title>
+</head>
+<body>
+    <input type="button" id="btn_message" value="ok" />
+
+
+    <h1>My First JavaScript</h1>
+
+    <button type="button"
+            onclick="myMessage()">
+        Click me to display Date and Time.</button>
+
+    <p id="demo"></p>
+    <script type="text/javascript">
+        var hw = document.getElementById('btn_message');
+        hw.onclick = function(){
+            alert('Hello world');
+        };
+
+        function myMessage() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+            if (xhttp.readyState == 4 && xhttp.status == 200) {
+                document.getElementById('demo').innerHTML = xhttp.responseText;
+            }
+        };
+            xhttp.open("GET","/brandlist", true);
+            xhttp.send();
+        };
+    </script>
+
+</body>
+</html>
