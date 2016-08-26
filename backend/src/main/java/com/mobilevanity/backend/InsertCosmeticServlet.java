@@ -44,7 +44,7 @@ public class InsertCosmeticServlet extends HttpServlet {
                         (req.getScheme().toLowerCase().equals("https") && req.getServerPort() == 443))) {
                     url += ":" + req.getServerPort();
                 }
-                image = url + "/images/" + req.getParameter("iamge");
+                image = url + "/images/" + req.getParameter("image");
             }
 
             Cosmetic cosmetic = new Cosmetic();

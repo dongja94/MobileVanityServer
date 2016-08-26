@@ -24,7 +24,12 @@
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
             if (xhttp.readyState == 4 && xhttp.status == 200) {
-                document.getElementById('demo').innerHTML = xhttp.responseText;
+                var obj = JSON.parse(xhttp.responseText);
+                var text = '';
+                for (i = 0; i < obj.result.length; i++) {
+                    text += obj.result[i].name;
+                }
+                document.getElementById('demo').innerHTML = text;
             }
         };
             xhttp.open("GET","/brandlist", true);

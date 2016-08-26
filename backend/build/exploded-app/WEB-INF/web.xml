@@ -209,6 +209,22 @@
         <url-pattern>/insertbrand</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>InsertProductServlet</servlet-name>
+        <servlet-class>com.mobilevanity.backend.InsertProductServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>InsertProductServlet</servlet-name>
+        <url-pattern>/insertproduct</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>InsertCosmeticServlet</servlet-name>
+        <servlet-class>com.mobilevanity.backend.InsertCosmeticServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>InsertCosmeticServlet</servlet-name>
+        <url-pattern>/insertcosmetic</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>SearchCosmeticListServlet</servlet-name>
         <servlet-class>com.mobilevanity.backend.SearchCosmeticListServlet</servlet-class>
     </servlet>
