@@ -20,6 +20,8 @@ public class InsertBeautyTipServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String url = blobstoreService.createUploadUrl("/realinsertbeautytip");
         URL u = new URL(url);
-        req.getRequestDispatcher(u.getFile()).forward(req, resp);
+//        req.getRequestDispatcher(u.getFile()).forward(req, resp);
+        resp.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
+        resp.setHeader("Location", url);
     }
 }
