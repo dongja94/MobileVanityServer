@@ -142,6 +142,11 @@ public class DataManager {
         Query query = ofy().load().type(Product.class).order("brand");
         if (brand != null) {
             query = query.filter("brand", brand);
+            for (int i = acceptBrands.size() - 1 ; i >= 0 ; i--) {
+                if (acceptBrands.get(i).id != brand.id) {
+                    acceptBrands.remove(i);
+                }
+            }
         }
         if (category > 0) {
             query = query.filter("category", category);
@@ -150,7 +155,27 @@ public class DataManager {
             query = query.filter("item", item);
         }
         List<Product> products = query.list();
-        List<Product> acceptProducts = ofy().load().type(Product.class).order("brand").filter("brand in", acceptBrands).list();
+        List<Product> acceptProducts = null;
+        if (acceptBrands != null && acceptBrands.size() > 0) {
+            acceptProducts = ofy().load().type(Product.class).order("brand").filter("brand in", acceptBrands).list();
+            for (int i = acceptProducts.size() - 1 ; i >= 0 ; i--) {
+                Product p = acceptProducts.get(i);
+                if (category > 0) {
+                    if (p.category != category) {
+                        acceptProducts.remove(i);
+                        continue;
+                    }
+                }
+                if (item > 0) {
+                    if (p.item != item) {
+                        acceptProducts.remove(i);
+                        continue;
+                    }
+                }
+            }
+        } else {
+            acceptProducts = new ArrayList<>();
+        }
         if (!Utility.isEmpty(keyword)) {
             for (Product p : products) {
                 if (p.name.contains(keyword)) {
@@ -160,8 +185,18 @@ public class DataManager {
                 }
             }
         }
-        List<Cosmetic> acceptCosmetics = ofy().load().type(Cosmetic.class).order("product").filter("product in", acceptProducts).list();
-        List<Cosmetic> cosmetics = ofy().load().type(Cosmetic.class).filter("product in", products).list();
+        List<Cosmetic> acceptCosmetics = null;
+        List<Cosmetic> cosmetics = null;
+        if (acceptProducts.size() > 0) {
+            acceptCosmetics = ofy().load().type(Cosmetic.class).order("product").filter("product in", acceptProducts).list();
+        } else {
+            acceptCosmetics = new ArrayList<>();
+        }
+        if (products.size() > 0) {
+            cosmetics = ofy().load().type(Cosmetic.class).filter("product in", products).list();
+        } else {
+            cosmetics = new ArrayList<>();
+        }
         if (!Utility.isEmpty(keyword)) {
             for (Cosmetic c : cosmetics) {
                 if (c.colorName.contains(keyword)) {

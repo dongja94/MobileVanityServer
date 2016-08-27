@@ -1,4 +1,18 @@
-<!-- Indices written at Fri, 26 Aug 2016 17:59:10 KST -->
+<!-- Indices written at Sat, 27 Aug 2016 16:12:54 KST -->
 
-<datastore-indexes/>
+<datastore-indexes>
 
+    <!-- Used 1 time in query history -->
+    <datastore-index kind="Product" ancestor="false" source="auto">
+        <property name="category" direction="asc"/>
+        <property name="item" direction="asc"/>
+        <property name="brand" direction="asc"/>
+    </datastore-index>
+
+    <!-- Used 1 time in query history -->
+    <datastore-index kind="Product" ancestor="false" source="auto">
+        <property name="category" direction="asc"/>
+        <property name="brand" direction="asc"/>
+    </datastore-index>
+
+</datastore-indexes>
