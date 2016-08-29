@@ -13,7 +13,7 @@ import com.mobilevanity.backend.common.DataConverter;
 public class Cosmetic implements DataConverter<Cosmetic.CosmeticResponse> {
     @Id public Long id;
     public String image;
-    public String colorName;
+    @Index public String colorName;
     public int color;
     public float capacity;
     public int unit;

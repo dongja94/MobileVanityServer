@@ -139,7 +139,7 @@ public class DataManager {
                 }
             }
         }
-        Query query = ofy().load().type(Product.class).order("brand");
+        Query query = ofy().load().type(Product.class);
         if (brand != null) {
             query = query.filter("brand", brand);
             for (int i = acceptBrands.size() - 1 ; i >= 0 ; i--) {
@@ -154,10 +154,11 @@ public class DataManager {
         if (item > 0) {
             query = query.filter("item", item);
         }
+        query = query.order("brand");
         List<Product> products = query.list();
         List<Product> acceptProducts = null;
         if (acceptBrands != null && acceptBrands.size() > 0) {
-            acceptProducts = ofy().load().type(Product.class).order("brand").filter("brand in", acceptBrands).list();
+            acceptProducts = ofy().load().type(Product.class).filter("brand in", acceptBrands).order("brand").list();
             for (int i = acceptProducts.size() - 1 ; i >= 0 ; i--) {
                 Product p = acceptProducts.get(i);
                 if (category > 0) {
@@ -188,7 +189,7 @@ public class DataManager {
         List<Cosmetic> acceptCosmetics = null;
         List<Cosmetic> cosmetics = null;
         if (acceptProducts.size() > 0) {
-            acceptCosmetics = ofy().load().type(Cosmetic.class).order("product").filter("product in", acceptProducts).list();
+            acceptCosmetics = ofy().load().type(Cosmetic.class).filter("product in", acceptProducts).order("product").list();
         } else {
             acceptCosmetics = new ArrayList<>();
         }
@@ -229,16 +230,16 @@ public class DataManager {
     }
 
     public List<Sale> findSaleByProduct(Product product) {
-        return ofy().load().type(Sale.class).filter("product", product).list();
+        return ofy().load().type(Sale.class).filter("product", product).order("startDay").list();
     }
 
     public List<Sale> findSaleByDate(Date start, Date end) {
-        Query query = ofy().load().type(Sale.class).order("startDay");
-        if (start != null) {
-            query = query.filter("startDay >", start);
-        }
+        Query query = ofy().load().type(Sale.class);
         if (end != null) {
-            query = query.filter("endDay <", end);
+            query = query.filter("startDay <", end);
+        }
+        if (start != null) {
+            query = query.filter("endDay >", start);
         }
         return query.list();
     }
@@ -253,14 +254,14 @@ public class DataManager {
     }
 
     public List<BeautyTip> findBeautyTip(User user, int sort, String keyword) {
-        Query query = null;
-        if (sort == BeautyTip.SORT_TYPE_RECENT) {
-            query = ofy().load().type(BeautyTip.class).order("writeDate");
-        } else {
-            query = ofy().load().type(BeautyTip.class).order("likeCount");
-        }
+        Query query = ofy().load().type(BeautyTip.class);
         if (user != null) {
             query = query.filter("user",user);
+        }
+        if (sort == BeautyTip.SORT_TYPE_RECENT) {
+            query = query.order("writeDate");
+        } else {
+            query = query.order("likeCount");
         }
         List<BeautyTip> list = query.list();
         if (!Utility.isEmpty(keyword)) {
@@ -276,7 +277,7 @@ public class DataManager {
     }
 
     public List<BeautyTip> findLikeBeautyTip(User user) {
-        return ofy().load().type(BeautyTip.class).order("writeDate").filter("likUsers", user).list();
+        return ofy().load().type(BeautyTip.class).filter("likUsers", user).order("writeDate").list();
     }
 
     public BeautyTip saveBeautyTip(BeautyTip beautyTip) {
@@ -299,11 +300,11 @@ public class DataManager {
     }
 
     public List<Comment> findComment(BeautyTip beautyTip) {
-        return ofy().load().type(Comment.class).order("writeDate").filter("beautyTip", beautyTip).list();
+        return ofy().load().type(Comment.class).filter("beautyTip", beautyTip).order("writeDate").list();
     }
 
     public List<Comment> findComment(User user) {
-        return ofy().load().type(Comment.class).order("writeDate").filter("writer",user).list();
+        return ofy().load().type(Comment.class).filter("writer",user).order("writeDate").list();
     }
 
     public Comment saveComment(Comment comment) {
@@ -340,7 +341,7 @@ public class DataManager {
     }
 
     public List<Notify> findNotify(Date date) {
-        return ofy().load().type(Notify.class).order("date").filter("date >", date).list();
+        return ofy().load().type(Notify.class).filter("date >", date).order("date").list();
     }
 
     public Notify saveNotify(Notify notify) {

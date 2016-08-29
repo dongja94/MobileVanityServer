@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<datastore-indexes autoGenerate="false">
+    <datastore-index ancestor="false" kind="BeautyTip" source="manual">
+        <property name="user" direction="asc" />
+        <property name="writeDate" direction="asc" />
+    </datastore-index>
+    <datastore-index ancestor="false" kind="BeautyTip" source="manual">
+        <property name="user" direction="asc" />
+        <property name="likeCount" direction="asc" />
+    </datastore-index>
+    <datastore-index ancestor="false" kind="BeautyTip" source="manual">
+        <property name="likeUsers" direction="asc" />
+        <property name="writeDate" direction="asc" />
+    </datastore-index>
+    <datastore-index ancestor="false" kind="Comment" source="manual">
+        <property name="beautyTip" direction="asc" />
+        <property name="writeDate" direction="asc" />
+    </datastore-index>
+    <datastore-index ancestor="false" kind="Comment" source="manual">
+        <property name="writer" direction="asc" />
+        <property name="writeDate" direction="asc" />
+    </datastore-index>
+    <datastore-index ancestor="false" kind="Notify" source="manual">
+        <property name="user" direction="asc" />
+        <property name="date" direction="asc" />
+    </datastore-index>
+    <datastore-index ancestor="false" kind="Product" source="manual">
+        <property name="category" direction="asc" />
+        <property name="brand" direction="asc" />
+    </datastore-index>
+    <datastore-index ancestor="false" kind="Product" source="manual">
+        <property name="category" direction="asc" />
+        <property name="item" direction="asc" />
+        <property name="brand" direction="asc" />
+    </datastore-index>
+    <datastore-index ancestor="false" kind="Sale" source="manual">
+        <property name="product" direction="asc" />
+        <property name="startDay" direction="asc" />
+    </datastore-index>
+</datastore-indexes>

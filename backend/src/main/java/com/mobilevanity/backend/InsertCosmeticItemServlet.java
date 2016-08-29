@@ -65,6 +65,7 @@ public class InsertCosmeticItemServlet extends HttpServlet {
                 }
             }
             Utility.responseErrorMessage(resp, Result.ERROR_INVALID_ARGUMENT);
+            return;
         }
         Utility.responseErrorMessage(resp, Result.ERROR_NOT_LOGIN);
     }
