@@ -28,7 +28,7 @@ public class DeleteCosmeticItemServlet extends HttpServlet {
                 long id = Long.parseLong(itemid);
                 item = DataManager.getInstance().getCosmeticItem(id);
             }
-            if (item != null && (item.owner.get().id == user.id)) {
+            if (item != null && (item.owner.get().id.equals(user.id))) {
                 switch (item.cosmetic.get().product.get().category) {
                     case CosmeticConstant.CATEGORY_EYE_MAKEUP:
                         user.eyeNum--;
@@ -57,6 +57,7 @@ public class DeleteCosmeticItemServlet extends HttpServlet {
             }
 
             Utility.responseErrorMessage(resp, Result.ERROR_INVALID_ARGUMENT);
+            return;
         }
         Utility.responseErrorMessage(resp, Result.ERROR_NOT_LOGIN);
     }
