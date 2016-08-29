@@ -48,7 +48,7 @@ public class RealInsertBeautyTipServlet extends HttpServlet {
                 beautyTip.content = content;
                 beautyTip.previewImage = imageUrl;
                 DataManager.getInstance().saveBeautyTip(beautyTip);
-                Utility.responseSuccessMessage(resp, beautyTip.convertResponse());
+                Utility.responseSuccessMessage(resp, beautyTip.convertResponse(user));
                 return;
             }
             Utility.responseErrorMessage(resp, Result.ERROR_INVALID_ARGUMENT);

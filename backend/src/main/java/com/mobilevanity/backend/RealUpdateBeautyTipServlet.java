@@ -55,7 +55,7 @@ public class RealUpdateBeautyTipServlet extends HttpServlet {
                         beautyTip.previewImage = imageUrl;
                     }
                     DataManager.getInstance().saveBeautyTip(beautyTip);
-                    Utility.responseSuccessMessage(resp, beautyTip.convertResponse());
+                    Utility.responseSuccessMessage(resp, beautyTip.convertResponse(user));
                     return;
                 }
             }

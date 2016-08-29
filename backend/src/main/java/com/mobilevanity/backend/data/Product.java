@@ -32,7 +32,7 @@ public class Product implements DataConverter<Product.ProductResponse> {
     }
 
     @Override
-    public ProductResponse convertResponse() {
+    public ProductResponse convertResponse(Object... args) {
         ProductResponse pr = new ProductResponse();
         pr.id = id;
         if (brand != null) {

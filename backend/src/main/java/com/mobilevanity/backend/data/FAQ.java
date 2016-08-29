@@ -16,7 +16,7 @@ public class FAQ implements DataConverter<FAQ> {
     public String content;
 
     @Override
-    public FAQ convertResponse() {
+    public FAQ convertResponse(Object... args) {
         return this;
     }
 }

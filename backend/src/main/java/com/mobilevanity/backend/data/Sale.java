@@ -33,7 +33,7 @@ public class Sale implements DataConverter<Sale.SaleResponse> {
     }
 
     @Override
-    public SaleResponse convertResponse() {
+    public SaleResponse convertResponse(Object... args) {
         SaleResponse sr = new SaleResponse();
         sr.id = id;
         if (product != null) {

@@ -37,7 +37,7 @@ public class LikeBeautyTipListServlet extends HttpServlet {
                     beautyTips.add(bt);
                 }
             }
-            Utility.responseSuccessMessage(resp, Utility.convertResponseList(beautyTips));
+            Utility.responseSuccessMessage(resp, Utility.convertResponseList(beautyTips, user));
             return;
         }
         Utility.responseErrorMessage(resp, Result.ERROR_NOT_LOGIN);

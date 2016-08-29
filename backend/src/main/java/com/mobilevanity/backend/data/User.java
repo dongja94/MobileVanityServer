@@ -36,7 +36,7 @@ public class User implements Cloneable, Serializable, DataConverter<User.SimpleU
     }
 
     @Override
-    public SimpleUserResponse convertResponse() {
+    public SimpleUserResponse convertResponse(Object... args) {
         SimpleUserResponse suser = new SimpleUserResponse();
         suser.id = id;
         suser.userNickName = userNickName;

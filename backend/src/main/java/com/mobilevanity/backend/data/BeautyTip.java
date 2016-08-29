@@ -40,10 +40,15 @@ public class BeautyTip implements DataConverter<BeautyTip.BeautyTipResponse> {
         public int commentNum;
         public int readNum;
         public String writeDate;
+        public boolean isLike;
     }
 
     @Override
-    public BeautyTipResponse convertResponse() {
+    public BeautyTipResponse convertResponse(Object... args) {
+        User loginUser = null;
+        if (args != null && args.length > 0) {
+            loginUser = (User)args[0];
+        }
         BeautyTipResponse btr = new BeautyTipResponse();
         btr.id = id;
         btr.previewImage = previewImage;
@@ -56,6 +61,11 @@ public class BeautyTip implements DataConverter<BeautyTip.BeautyTipResponse> {
         btr.commentNum = commentNum;
         btr.readNum = readNum;
         btr.writeDate = Utility.convertDateToString(writeDate);
+        if (loginUser != null) {
+            btr.isLike = likeUsers.contains(Ref.create(loginUser));
+        } else {
+            btr.isLike = false;
+        }
         return btr;
     }
 }

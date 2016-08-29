@@ -14,7 +14,7 @@ public class Brand implements DataConverter<Brand> {
     @Index public String name;
 
     @Override
-    public Brand convertResponse() {
+    public Brand convertResponse(Object... args) {
         return this;
     }
 }

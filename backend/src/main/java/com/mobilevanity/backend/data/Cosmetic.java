@@ -32,7 +32,7 @@ public class Cosmetic implements DataConverter<Cosmetic.CosmeticResponse> {
     }
 
     @Override
-    public CosmeticResponse convertResponse() {
+    public CosmeticResponse convertResponse(Object... args) {
         CosmeticResponse cr = new CosmeticResponse();
         cr.id = id;
         cr.image = image;

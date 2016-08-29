@@ -29,7 +29,7 @@ public class CosmeticItem implements DataConverter<CosmeticItem.CosmeticItemResp
     }
 
     @Override
-    public CosmeticItemResponse convertResponse() {
+    public CosmeticItemResponse convertResponse(Object... args) {
         CosmeticItemResponse cir = new CosmeticItemResponse();
         cir.id = id;
         if (cosmetic != null) {

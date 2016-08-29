@@ -49,10 +49,10 @@ public class Utility {
         return text == null || text.equals("");
     }
 
-    public static<T,S extends DataConverter<T>> List<T> convertResponseList(List<S> converts) {
+    public static<T,S extends DataConverter<T>> List<T> convertResponseList(List<S> converts, Object... args) {
         List<T> list = new ArrayList<>();
         for (S converter : converts) {
-            list.add(converter.convertResponse());
+            list.add(converter.convertResponse(args));
         }
         return list;
     }

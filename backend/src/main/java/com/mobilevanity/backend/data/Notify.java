@@ -30,7 +30,7 @@ public class Notify implements DataConverter<Notify.NotifyResponse> {
     }
 
     @Override
-    public NotifyResponse convertResponse() {
+    public NotifyResponse convertResponse(Object... args) {
         NotifyResponse nr = new NotifyResponse();
         nr.id = id;
         nr.type = type;

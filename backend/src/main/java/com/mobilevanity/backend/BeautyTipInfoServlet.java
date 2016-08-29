@@ -1,8 +1,10 @@
 package com.mobilevanity.backend;
 
 import com.mobilevanity.backend.common.Result;
+import com.mobilevanity.backend.common.SessionConstant;
 import com.mobilevanity.backend.common.Utility;
 import com.mobilevanity.backend.data.BeautyTip;
+import com.mobilevanity.backend.data.User;
 
 import java.io.IOException;
 
@@ -26,7 +28,8 @@ public class BeautyTipInfoServlet extends HttpServlet {
         if (beautyTip != null) {
             beautyTip.readNum++;
             DataManager.getInstance().saveBeautyTip(beautyTip);
-            Utility.responseSuccessMessage(resp, beautyTip.convertResponse());
+            User user = (User)req.getSession().getAttribute(SessionConstant.USER);
+            Utility.responseSuccessMessage(resp, beautyTip.convertResponse(user));
             return;
         }
         Utility.responseErrorMessage(resp, Result.ERROR_INVALID_ARGUMENT);

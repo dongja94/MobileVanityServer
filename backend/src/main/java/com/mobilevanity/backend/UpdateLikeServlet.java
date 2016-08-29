@@ -39,14 +39,14 @@ public class UpdateLikeServlet extends HttpServlet {
                     if (!beautyTip.likeUsers.contains(ref)) {
                         beautyTip.likeUsers.add(ref);
                         DataManager.getInstance().saveBeautyTip(beautyTip);
-                        Utility.responseSuccessMessage(resp, beautyTip.convertResponse());
+                        Utility.responseSuccessMessage(resp, beautyTip.convertResponse(user));
                         return;
                     }
                 } else {
                     if (beautyTip.likeUsers.contains(ref)) {
                         beautyTip.likeUsers.remove(ref);
                         DataManager.getInstance().saveBeautyTip(beautyTip);
-                        Utility.responseSuccessMessage(resp, beautyTip.convertResponse());
+                        Utility.responseSuccessMessage(resp, beautyTip.convertResponse(user));
                         return;
                     }
                 }

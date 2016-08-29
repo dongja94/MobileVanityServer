@@ -29,7 +29,7 @@ public class Comment implements DataConverter<Comment.CommentResponse> {
     }
 
     @Override
-    public CommentResponse convertResponse() {
+    public CommentResponse convertResponse(Object... args) {
         CommentResponse cr = new CommentResponse();
         cr.id = id;
         if (writer != null) {
