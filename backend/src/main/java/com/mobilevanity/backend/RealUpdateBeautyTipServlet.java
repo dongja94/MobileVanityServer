@@ -33,7 +33,8 @@ public class RealUpdateBeautyTipServlet extends HttpServlet {
                 long id = Long.parseLong(beautyTipId);
                 beautyTip = DataManager.getInstance().getBeautyTip(id);
             }
-            if (beautyTip != null && beautyTip.user.get().id == user.id) {
+            User writer = beautyTip.user.get();
+            if (beautyTip != null && writer.id.equals(user.id)) {
                 String title = req.getParameter("title");
                 String content = req.getParameter("content");
                 Map<String, List<BlobKey>> blobs = blobstoreService.getUploads(req);

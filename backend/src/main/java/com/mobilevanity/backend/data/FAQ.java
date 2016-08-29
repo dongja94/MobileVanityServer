@@ -2,6 +2,7 @@ package com.mobilevanity.backend.data;
 
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
+import com.googlecode.objectify.annotation.Index;
 import com.mobilevanity.backend.common.DataConverter;
 
 /**
@@ -10,6 +11,7 @@ import com.mobilevanity.backend.common.DataConverter;
 @Entity
 public class FAQ implements DataConverter<FAQ> {
     @Id public Long id;
+    @Index public int number;
     public String title;
     public String content;
 

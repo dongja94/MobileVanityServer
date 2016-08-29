@@ -53,6 +53,7 @@ public class DeleteCosmeticItemServlet extends HttpServlet {
                 req.getSession().setAttribute(SessionConstant.USER, user);
                 DataManager.getInstance().deleteCosmeticItem(item);
                 Utility.responseSuccessMessage(resp, item.convertResponse());
+                return;
             }
 
             Utility.responseErrorMessage(resp, Result.ERROR_INVALID_ARGUMENT);

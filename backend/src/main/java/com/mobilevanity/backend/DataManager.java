@@ -247,6 +247,11 @@ public class DataManager {
         return ofy().load().type(Sale.class).id(id).now();
     }
 
+    public Sale saveSale(Sale sale) {
+        ofy().save().entity(sale).now();
+        return sale;
+    }
+
     public List<BeautyTip> findBeautyTip(User user, int sort, String keyword) {
         Query query = null;
         if (sort == BeautyTip.SORT_TYPE_RECENT) {
@@ -289,6 +294,10 @@ public class DataManager {
         return ofy().load().type(BeautyTip.class).id(id).now();
     }
 
+    public List<BeautyTip> listBeautyTip() {
+        return ofy().load().type(BeautyTip.class).list();
+    }
+
     public List<Comment> findComment(BeautyTip beautyTip) {
         return ofy().load().type(Comment.class).order("writeDate").filter("beautyTip", beautyTip).list();
     }
@@ -318,7 +327,7 @@ public class DataManager {
     }
 
     public List<FAQ> listFAQ() {
-        return ofy().load().type(FAQ.class).list();
+        return ofy().load().type(FAQ.class).order("number").list();
     }
 
     public FAQ saveFAQ(FAQ faq) {

@@ -31,11 +31,11 @@ public class UpdateCosmeticItemServlet extends HttpServlet {
                 long id = Long.parseLong(itemid);
                 item = DataManager.getInstance().getCosmeticItem(id);
             }
-            if (item != null && (item.owner.get().id == user.id)) {
+            if (item != null && (item.owner.get().id.equals(user.id))) {
                 long cosmeticid = Long.parseLong(req.getParameter("cosmeticid"));
                 Cosmetic cosmetic = DataManager.getInstance().getCosmetic(cosmeticid);
                 if (cosmetic != null) {
-                    if (item.cosmetic.get().id != cosmetic.id) {
+                    if (item.cosmetic.get().id.equals(cosmetic.id)) {
                         if (item.cosmetic.get().product.get().category != cosmetic.product.get().category) {
                             switch (item.cosmetic.get().product.get().category) {
                                 case CosmeticConstant.CATEGORY_EYE_MAKEUP:

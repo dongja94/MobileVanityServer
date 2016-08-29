@@ -35,6 +35,8 @@ public class InsertCommentServlet extends HttpServlet {
                 comment.beautyTip = Ref.create(beautyTip);
                 comment.writer = Ref.create(user);
                 comment.content = content;
+                beautyTip.commentNum++;
+                DataManager.getInstance().saveBeautyTip(beautyTip);
                 DataManager.getInstance().saveComment(comment);
                 Utility.responseSuccessMessage(resp, comment.convertResponse());
                 return;

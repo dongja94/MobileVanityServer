@@ -153,6 +153,22 @@
         <url-pattern>/realinsertbeautytip</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>InsertSaleServlet</servlet-name>
+        <servlet-class>com.mobilevanity.backend.InsertSaleServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>InsertSaleServlet</servlet-name>
+        <url-pattern>/insertsale</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>RealInsertSaleServlet</servlet-name>
+        <servlet-class>com.mobilevanity.backend.RealInsertSaleServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RealInsertSaleServlet</servlet-name>
+        <url-pattern>/realinsertsale</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>UpdateBeautyTipServlet</servlet-name>
         <servlet-class>com.mobilevanity.backend.UpdateBeautyTipServlet</servlet-class>
     </servlet>
@@ -223,6 +239,22 @@
     <servlet-mapping>
         <servlet-name>InsertCosmeticServlet</servlet-name>
         <url-pattern>/insertcosmetic</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>InsertFaqServlet</servlet-name>
+        <servlet-class>com.mobilevanity.backend.InsertFaqServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>InsertFaqServlet</servlet-name>
+        <url-pattern>/insertfaq</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>InsertNotifyServlet</servlet-name>
+        <servlet-class>com.mobilevanity.backend.InsertNotifyServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>InsertNotifyServlet</servlet-name>
+        <url-pattern>/insertnotify</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>SearchCosmeticListServlet</servlet-name>

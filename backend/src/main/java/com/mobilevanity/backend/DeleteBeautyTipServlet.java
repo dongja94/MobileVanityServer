@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 public class DeleteBeautyTipServlet extends HttpServlet {
     private BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User user = (User)req.getSession().getAttribute(SessionConstant.USER);
         if (user != null) {
             String beautyTipId = req.getParameter("beautytipid");
@@ -32,11 +32,12 @@ public class DeleteBeautyTipServlet extends HttpServlet {
                 long id = Long.parseLong(beautyTipId);
                 beautyTip = DataManager.getInstance().getBeautyTip(id);
             }
-            if (beautyTip != null && beautyTip.user.get().id == user.id) {
+            if (beautyTip != null && beautyTip.user.get().id.equals(user.id)) {
                 List<Comment> comments = DataManager.getInstance().findComment(beautyTip);
                 DataManager.getInstance().deleteCommentAll(comments);
                 DataManager.getInstance().deleteBeautyTip(beautyTip);
                 Utility.responseSuccessMessage(resp, beautyTip.convertResponse());
+                return;
             }
             Utility.responseErrorMessage(resp, Result.ERROR_INVALID_ARGUMENT);
             return;
