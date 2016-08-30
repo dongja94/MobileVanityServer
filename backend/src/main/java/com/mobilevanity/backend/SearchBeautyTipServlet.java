@@ -38,25 +38,21 @@ public class SearchBeautyTipServlet extends HttpServlet {
             }
         }
         if (type.equals("user")) {
-            User user = (User)req.getSession().getAttribute(SessionConstant.USER);
+            User user = (User) req.getSession().getAttribute(SessionConstant.USER);
             if (user != null) {
                 List<BeautyTip> beautyTips = DataManager.getInstance().findBeautyTip(user, order, query);
                 for (BeautyTip bt : beautyTips) {
                     bt.user = null;
                 }
-                Utility.responseSuccessMessage(resp, Utility.convertResponseList(beautyTips,user));
+                Utility.responseSuccessMessage(resp, Utility.convertResponseList(beautyTips, user));
                 return;
             }
             Utility.responseErrorMessage(resp, Result.ERROR_NOT_LOGIN);
             return;
         } else if (type.equals("keyword")) {
-            if (!Utility.isEmpty(query)) {
-                List<BeautyTip> beautyTips = DataManager.getInstance().findBeautyTip(null, order, query);
-                User user = (User)req.getSession().getAttribute(SessionConstant.USER);
-                Utility.responseSuccessMessage(resp, Utility.convertResponseList(beautyTips,user));
-                return;
-            }
-            Utility.responseErrorMessage(resp, Result.ERROR_INVALID_ARGUMENT);
+            List<BeautyTip> beautyTips = DataManager.getInstance().findBeautyTip(null, order, query);
+            User user = (User) req.getSession().getAttribute(SessionConstant.USER);
+            Utility.responseSuccessMessage(resp, Utility.convertResponseList(beautyTips, user));
             return;
         }
         Utility.responseErrorMessage(resp, Result.ERROR_INVALID_ARGUMENT);
