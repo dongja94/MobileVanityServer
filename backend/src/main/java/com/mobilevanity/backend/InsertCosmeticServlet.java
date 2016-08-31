@@ -26,6 +26,7 @@ public class InsertCosmeticServlet extends HttpServlet {
         if (user != null && user.email.equals(AdminConstant.ADMIN_EMAIL)) {
             long productid = Long.parseLong(req.getParameter("productid"));
             Product product = DataManager.getInstance().getProduct(productid);
+            String colorCode = req.getParameter("colorCode");
             String colorName = req.getParameter("colorName");
             String colorText = req.getParameter("color");
             int color = 0;
@@ -49,6 +50,7 @@ public class InsertCosmeticServlet extends HttpServlet {
 
             Cosmetic cosmetic = new Cosmetic();
             cosmetic.product = Ref.create(product);
+            cosmetic.colorCode = colorCode;
             cosmetic.colorName = colorName;
             cosmetic.color = color;
             cosmetic.capacity = capacity;

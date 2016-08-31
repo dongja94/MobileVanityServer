@@ -235,13 +235,23 @@ public class DataManager {
 
     public List<Sale> findSaleByDate(Date start, Date end) {
         Query query = ofy().load().type(Sale.class);
-        if (end != null) {
-            query = query.filter("startDay <", end);
+        if (end != null && start == null) {
+            return query.filter("startDay <", end).list();
         }
-        if (start != null) {
-            query = query.filter("endDay >", start);
+        if (start != null && end == null) {
+            return query.filter("endDay >", start).list();
         }
-        return query.list();
+        if (end != null && start != null) {
+            List<Sale> list = query.filter("startDay <",end).list();
+            List<Sale> result = new ArrayList<>();
+            for (Sale s : list) {
+                if (s.endDay.getTime() > start.getTime()) {
+                    result.add(s);
+                }
+            }
+            return result;
+        }
+        return null;
     }
 
     public Sale getSale(long id) {
