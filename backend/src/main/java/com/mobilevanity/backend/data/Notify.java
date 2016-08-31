@@ -14,6 +14,12 @@ import java.util.Date;
  */
 @Entity
 public class Notify implements DataConverter<Notify.NotifyResponse> {
+
+    public static final String TYPE_COMMENT = "comment";
+    public static final String TYPE_LIKE = "like";
+    public static final String MESSAGE_FORMAT_COMMENT = "%s님이 %s에 댓글을 남겼습니다.";
+    public static final String MESSAGE_FORMAT_LIKE = "%s님이 %s을(를) 좋아합니다.";
+
     @Id public Long id;
     @Index public Ref<User> user;
     @Index public String type;
