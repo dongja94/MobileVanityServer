@@ -80,7 +80,33 @@ public class DataManager {
     }
 
     public User saveUser(User user) {
-        ofy().save().entity(user).now();
+        if (user.id == null) {
+            ofy().save().entity(user).now();
+        } else {
+            User savedUser = ofy().load().type(User.class).id(user.id).now();
+            if (savedUser != null) {
+//                savedUser.email = user.email;
+//                savedUser.userNickName = user.userNickName;
+//                savedUser.userProfile =user.userProfile;
+//                savedUser.facebookId = user.facebookId;
+//                savedUser.skinType = user.skinType;
+//                savedUser.skinTone = user.skinTone;
+//                savedUser.gender = user.gender;
+//                savedUser.cleansingNum = user.cleansingNum;
+//                savedUser.eyeNum = user.eyeNum;
+//                savedUser.faceNum = user.faceNum;
+//                savedUser.lipNum = user.lipNum;
+//                savedUser.skinNum = user.skinNum;
+//                savedUser.toolNum = user.toolNum;
+                user.password = savedUser.password;
+                user.registrationId = savedUser.registrationId;
+                ofy().save().entity(user).now();
+                user.password = null;
+                user.registrationId = null;
+            } else {
+                ofy().save().entity(user).now();
+            }
+        }
         return user;
     }
 
