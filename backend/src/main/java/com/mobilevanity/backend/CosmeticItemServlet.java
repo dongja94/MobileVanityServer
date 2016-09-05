@@ -25,7 +25,7 @@ public class CosmeticItemServlet extends HttpServlet {
             String cosmeticitemid = req.getParameter("cosmeticitemid");
             CosmeticItem item = null;
             if (!Utility.isEmpty(cosmeticitemid)) {
-                long id = Integer.parseInt(cosmeticitemid);
+                long id = Long.parseLong(cosmeticitemid);
                 item = DataManager.getInstance().getCosmeticItem(id);
             }
             if (item != null) {
