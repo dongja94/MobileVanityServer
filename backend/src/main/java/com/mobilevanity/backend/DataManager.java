@@ -230,11 +230,14 @@ public class DataManager {
     }
 
     public List<Sale> findSaleByProduct(Product product) {
-        return ofy().load().type(Sale.class).filter("product", product).order("startDay").list();
+        return ofy().load().type(Sale.class).filter("product", product).list();
     }
 
-    public List<Sale> findSaleByDate(Date start, Date end) {
+    public List<Sale> findSaleByDate(Product product, Date start, Date end) {
         Query query = ofy().load().type(Sale.class);
+        if (product != null) {
+            query = query.filter("product",product);
+        }
         if (end != null && start == null) {
             return query.filter("startDay <", end).list();
         }

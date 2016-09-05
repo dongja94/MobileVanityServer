@@ -62,7 +62,8 @@ public class SaleInfoServlet extends HttpServlet {
         }
         if (type.equals("product")) {
             if (product != null) {
-                List<Sale> sales = DataManager.getInstance().findSaleByProduct(product);
+                Date now = new Date();
+                List<Sale> sales = DataManager.getInstance().findSaleByDate(product, now, now);
                 for (Sale sale : sales) {
                     sale.product = null;
                 }
@@ -71,7 +72,7 @@ public class SaleInfoServlet extends HttpServlet {
             }
         } else if (type.equals("date")) {
             if (start != null || end != null) {
-                List<Sale> sales = DataManager.getInstance().findSaleByDate(start, end);
+                List<Sale> sales = DataManager.getInstance().findSaleByDate(null, start, end);
                 Utility.responseSuccessMessage(resp, Utility.convertResponseList(sales));
                 return;
             }

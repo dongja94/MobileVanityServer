@@ -89,6 +89,14 @@
         <url-pattern>/cosmeticitems</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>CosmeticItemServlet</servlet-name>
+        <servlet-class>com.mobilevanity.backend.CosmeticItemServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CosmeticItemServlet</servlet-name>
+        <url-pattern>/cosmeticitem</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>SearchByBarcodeServlet</servlet-name>
         <servlet-class>com.mobilevanity.backend.SearchByBarcodeServlet</servlet-class>
     </servlet>
@@ -215,6 +223,14 @@
     <servlet-mapping>
         <servlet-name>CosmeticListServlet</servlet-name>
         <url-pattern>/cosmeticlist</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>CosmeticServlet</servlet-name>
+        <servlet-class>com.mobilevanity.backend.CosmeticServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CosmeticServlet</servlet-name>
+        <url-pattern>/cosmetic</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>InsertBrandServlet</servlet-name>
