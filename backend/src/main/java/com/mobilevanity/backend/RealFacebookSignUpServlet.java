@@ -53,7 +53,7 @@ public class RealFacebookSignUpServlet extends HttpServlet {
                 }
                 imageUrl = url + "/" + "displayimage?imageid=" +blobKeys.get(0).getKeyString();
             }
-
+            user.userProfile = imageUrl;
             user.registrationId = (String)req.getSession().getAttribute(SessionConstant.REGISTRATION_ID);
             user.facebookId = info.id;
             try {

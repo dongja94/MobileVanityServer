@@ -9,12 +9,20 @@ import com.mobilevanity.backend.common.DataConverter;
  * Created by Administrator on 2016-08-24.
  */
 @Entity
-public class Brand implements DataConverter<Brand> {
+public class Brand implements DataConverter<Brand.BrandResponse> {
     @Id public Long id;
     @Index public String name;
+    @Index public String images;
 
+    public static class BrandResponse {
+        long id;
+        String name;
+    }
     @Override
-    public Brand convertResponse(Object... args) {
-        return this;
+    public BrandResponse convertResponse(Object... args) {
+        BrandResponse br = new BrandResponse();
+        br.id = id;
+        br.name = name;
+        return br;
     }
 }

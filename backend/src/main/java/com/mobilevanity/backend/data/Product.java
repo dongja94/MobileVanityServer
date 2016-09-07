@@ -22,7 +22,7 @@ public class Product implements DataConverter<Product.ProductResponse> {
 
     public static class ProductResponse {
         public long id;
-        public Brand brand;
+        public Brand.BrandResponse brand;
         public int category;
         public int item;
         public String code;
@@ -36,7 +36,7 @@ public class Product implements DataConverter<Product.ProductResponse> {
         ProductResponse pr = new ProductResponse();
         pr.id = id;
         if (brand != null) {
-            pr.brand = brand.get();
+            pr.brand = brand.get().convertResponse();
         }
         pr.category = category;
         pr.item = item;

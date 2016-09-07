@@ -23,9 +23,11 @@ public class InsertBrandServlet extends HttpServlet {
         User user = (User)req.getSession().getAttribute(SessionConstant.USER);
         if (user != null && user.email.equals(AdminConstant.ADMIN_EMAIL)) {
             String name = req.getParameter("name");
+            String images = req.getParameter("images");
             if (!Utility.isEmpty(name)) {
                 Brand brand = new Brand();
                 brand.name = name;
+                brand.images = images;
                 DataManager.getInstance().saveBrand(brand);
                 Utility.responseSuccessMessage(resp, brand);
                 return;
