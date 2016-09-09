@@ -36,7 +36,7 @@ public class NotifyListServlet extends HttpServlet {
             if (date == null) {
                 date = new Date(0);
             }
-            List<Notify> notifies = DataManager.getInstance().findNotify(date);
+            List<Notify> notifies = DataManager.getInstance().findNotify(user, date);
             Utility.responseSuccessMessage(resp, Utility.convertResponseList(notifies));
             return;
         }

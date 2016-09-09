@@ -379,8 +379,8 @@ public class DataManager {
         return ofy().load().type(FAQ.class).id(id).now();
     }
 
-    public List<Notify> findNotify(Date date) {
-        return ofy().load().type(Notify.class).filter("date >", date).order("date").list();
+    public List<Notify> findNotify(User user, Date date) {
+        return ofy().load().type(Notify.class).filter("user",user).filter("date >", date).order("date").list();
     }
 
     public Notify saveNotify(Notify notify) {
